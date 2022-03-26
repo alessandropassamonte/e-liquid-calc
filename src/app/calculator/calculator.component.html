@@ -1,0 +1,55 @@
+<form [formGroup]="frmCalculator" (ngSubmit)="calcola(frmCalculator.value)">
+  <div class="form-check">
+    <input class="form-check-input" type="radio" formControlName="dosaggio" id="5050" value="50" checked>
+    <label class="form-check-label" for="5050">
+      50/50
+    </label>
+  </div>
+  <div class="form-check">
+    <input class="form-check-input" type="radio" formControlName="dosaggio" id="7030"  value="70">
+    <label class="form-check-label" for="7030">
+      70/30
+    </label>
+  </div>
+  <div class="form-group">
+    <label for="totale">Liquido Totale</label>
+    <input type="number" class="form-control" formControlName="totale" id="totale" >
+  </div>
+  <div class="form-group">
+    <label for="gradazione">Gradazione Nicotina</label>
+    <input type="number" class="form-control" formControlName="gradazione" id="gradazione" >
+  </div>
+  <div class="form-group">
+    <label for="nicotina">Nicotina contenuta nelle basi</label>
+    <select class="form-control" id="nicotina" formControlName="nicotina">
+      <option value="0">0mg</option>
+      <option value="6">6mg</option>
+      <option value="9">9mg</option>
+      <option value="18">18mg</option>
+      <option value="20">20mg</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="aroma">Aroma in %</label>
+    <input type="number" formControlName="aroma" class="form-control" id="aroma" >
+  </div>
+
+  <button type="submit" class="btn btn-primary">Calcola</button>
+</form>
+
+<div *ngIf="result" class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title">Risultati</h5>
+    <p class="card-text">Glicerina: {{glicerinaResult}}ml</p>
+    <p class="card-text">Glicole: {{glicoleResult}}ml</p>
+    <p class="card-text">Nicotina : {{nicotinaResult}}ml</p>
+    <hr>
+    <p class="card-text">Totale : ml</p>
+
+  </div>
+</div>
+
+
+
+
+

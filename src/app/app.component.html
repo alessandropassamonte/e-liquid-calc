@@ -1,0 +1,81 @@
+<h3 style="text-align: center;"> E-Cig Liquid Calculator</h3>
+<br>
+<div class=" p-2 card d-flex justify-content-center"  style="width: 24em;margin:0 auto;">
+  <div class="card-body">
+    <h5 class="card-title">Definisci le quantità</h5>
+    <form [formGroup]="frmCalculator" (ngSubmit)="calcola(frmCalculator.value)">
+      <label class="form-check-label"> Dosaggio: </label>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="dosaggio" formControlName="dosaggio" id="5050" value="50/50" [checked]="true"  required>
+        <label class="form-check-label" for="5050">
+          50/50 (Tiro da Guancia - MTL)
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="dosaggio" formControlName="dosaggio" id="7030"  value="70/30" required>
+        <label class="form-check-label" for="7030">
+          70/30 (Tiro da Polmone)
+        </label>
+      </div> <br>
+      <div class="form-group">
+        <label for="totale">Liquido Totale che intendi ottenere</label>
+        <input type="number" class="form-control" formControlName="totale" id="totale" required="true" placeholder="0" >
+      </div>
+      <div class="form-group">
+        <label for="gradazione">Gradazione Nicotina (mg/ml)</label>
+        <input type="number" class="form-control" formControlName="gradazione" id="gradazione" placeholder="0" >
+      </div>
+      <div class="form-group">
+        <div class="row">
+          <div class="col-8">
+            <label for="nicotina">Nicotina contenuta nelle basi</label><br>
+            <span><small>(di solito contenuta in confezioni da 10 ml)</small></span>
+            <select class="form-control" id="nicotina" formControlName="nicotina">
+              <option value="0" [selected]="true" >0 mg</option>
+              <option value="6">6 mg</option>
+              <option value="9">9 mg</option>
+              <option value="18">18 mg</option>
+              <option value="20">20 mg</option>
+
+            </select>
+          </div>
+          <div class="col-4">
+            <label for="dosaggioNicotina">Dosaggio PG/VG della Nicotina</label><br>
+            <select class="form-control" id="dosaggioNicotina" formControlName="dosaggioNicotina">
+              <option value="1"  [selected]="true">50/50</option>
+              <option value="2">70/30</option>
+              <option value="3">Full PG</option>
+              <option value="4">Full VG</option>
+            </select>
+          </div>
+        </div>
+
+      </div>
+      <div class="form-group">
+        <label for="aroma">Aroma in %</label>
+        <input type="number" formControlName="aroma" class="form-control" id="aroma" placeholder="0" >
+      </div>
+
+      <button type="submit" class="btn btn-primary">Calcola</button>
+    </form>
+  </div>
+</div>
+
+<br>
+
+<div *ngIf="result" class="card" style="width: 24em; margin:0 auto;">
+  <div class="card-body">
+    <h5 class="card-title">Risultati</h5>
+    <p class="card-text">Glicerina (VG): <b>{{liquisResult.glicerina | number: '1.0-1'}}</b> ml</p>
+    <p class="card-text">Glicole (PG):<b> {{liquisResult.glicole | number: '1.0-1'}}</b> ml</p>
+    <p class="card-text">Nicotina: <b>{{liquisResult.nicotina| number: '1.0-1'}}</b> ml </p>
+    <p class="card-text">Aroma: <b>{{liquisResult.aroma| number: '1.0-1'}}</b> ml</p>
+    <hr>
+    <p class="card-text">Totale: <b>{{liquisResult.glicerina + liquisResult.glicole + liquisResult.nicotina + liquisResult.aroma}}</b> ml</p>
+  </div>
+</div>
+
+
+
+
+
